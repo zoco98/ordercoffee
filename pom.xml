@@ -95,6 +95,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -102,34 +108,34 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
-		<dependency>
+		<!--<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.13.2</version>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
+		</dependency>-->
+<!--		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
-			<version>4.8.1</version> <!-- Replace with the latest version if needed -->
+			<version>4.8.1</version> &lt;!&ndash; Replace with the latest version if needed &ndash;&gt;
 			<scope>test</scope>
 		</dependency>
 
-		<!-- JUnit Jupiter API (for JUnit 5) -->
+		&lt;!&ndash; JUnit Jupiter API (for JUnit 5) &ndash;&gt;
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-api</artifactId>
-			<version>5.8.2</version> <!-- Replace with the latest version if needed -->
+			<version>5.8.2</version> &lt;!&ndash; Replace with the latest version if needed &ndash;&gt;
 			<scope>test</scope>
 		</dependency>
 
-		<!-- JUnit Jupiter Engine (for JUnit 5) -->
+		&lt;!&ndash; JUnit Jupiter Engine (for JUnit 5) &ndash;&gt;
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-engine</artifactId>
-			<version>5.8.2</version> <!-- Replace with the latest version if needed -->
+			<version>5.8.2</version> &lt;!&ndash; Replace with the latest version if needed &ndash;&gt;
 			<scope>test</scope>
-		</dependency>
+		</dependency>-->
 		<!-- Spring Test -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -145,13 +151,15 @@
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.github.tomakehurst/wiremock -->
 		<dependency>
-			<groupId>com.github.tomakehurst</groupId>
-			<artifactId>wiremock</artifactId>
-			<version>2.27.2</version>
-			<type>pom</type>
-			<scope>test</scope>
+			<groupId>org.wiremock</groupId>
+			<artifactId>wiremock-standalone</artifactId>
+			<version>3.3.1</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>

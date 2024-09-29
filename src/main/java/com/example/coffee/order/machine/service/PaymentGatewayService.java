@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class PaymentGatewayService {
 
-    @Autowired
     private PaymentProcessorGateway paymentProcessorGateway;
+
+    public PaymentGatewayService(PaymentProcessorGateway paymentProcessorGateway) {
+        this.paymentProcessorGateway = paymentProcessorGateway;
+    }
 
     public CoffeeBookingResponse makePaymentAndBookYourCoffee(CoffeeBookingPaymentRequest coffeetBookingPaymentRequest) {
         final CardDetails cardDetails = coffeetBookingPaymentRequest.getCardDetails();
