@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 @Builder
 @AllArgsConstructor
-public class CoffeetBookingPaymentRequest {
+public class CoffeeBookingPaymentRequest {
     private final String bookingId;
     private final Double amount;
     private final CardDetails cardDetails;
