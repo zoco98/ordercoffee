@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import com.example.coffee.order.machine.dto.FraudCheckResponse;
 import com.example.coffee.order.machine.dto.PaymentProcessorResponse;
 import com.example.coffee.order.machine.dto.PaymentProcessorResponseRequest;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,8 +14,6 @@ public class PaymentProcessorGateway {
 
     private final PaymentProcessorRestTemplate restTemplate = new PaymentProcessorRestTemplate();
     private String baseUrl;
-    /*private final String host = "localhost";
-    private final String port = "8081";*/
 
     public PaymentProcessorGateway(final String host, final int port) {
         this.baseUrl = this.baseUrl = "http://" + host + ":" + port;
