@@ -2,22 +2,12 @@ package com.example.coffee.order.machine.service;
 
 import com.example.coffee.order.machine.dto.*;
 import com.example.coffee.order.machine.gateway.PaymentProcessorGateway;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-@Getter
-@Setter
 public class PaymentGatewayService {
 
-    @Value("${app.host}")
-    private String host;
-
-    @Value("${app.port}")
-    private int port;
-    private PaymentProcessorGateway paymentProcessorGateway = new PaymentProcessorGateway(host, port);
+    private PaymentProcessorGateway paymentProcessorGateway;
 
     public PaymentGatewayService(PaymentProcessorGateway paymentProcessorGateway) {
         this.paymentProcessorGateway = paymentProcessorGateway;
