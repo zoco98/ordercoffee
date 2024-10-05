@@ -12,7 +12,6 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Table(name = "Coffee")
 public class Coffee implements Serializable{
     private static final long serialVersionUID = 2L;

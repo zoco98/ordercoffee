@@ -1,7 +1,9 @@
 package com.example.coffee.order.machine.service;
 
+import com.example.coffee.order.machine.dto.CardDetails;
 import com.example.coffee.order.machine.entity.Coffee;
 import com.example.coffee.order.machine.entity.Order;
+import com.example.coffee.order.machine.exception.FraudAlertException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +14,7 @@ public interface CoffeeOrderService {
 
     List<Coffee> getCoffeeList();
 
-    ResponseEntity<Order> orderCoffee(String customerName, String coffeeName, int quantity);
+    ResponseEntity<Order> orderCoffee(String customerName, String coffeeName, int quantity, CardDetails cardDetails) throws FraudAlertException;
 
     List<Order> getAllOrder();
 

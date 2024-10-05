@@ -1,7 +1,9 @@
 package com.example.coffee.order.machine.controller;
 
+import com.example.coffee.order.machine.dto.CardDetails;
 import com.example.coffee.order.machine.entity.Coffee;
 import com.example.coffee.order.machine.entity.Order;
+import com.example.coffee.order.machine.exception.FraudAlertException;
 import com.example.coffee.order.machine.service.CoffeeOrderService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +35,9 @@ public class CoffeeOrderController {
     public ResponseEntity<Order> orderCoffee(
             @PathVariable("customerName") String customerName,
             @Valid @RequestParam("coffeeName") String coffeeName,
-            @Valid @RequestParam("quantity") int quantity){
-        ResponseEntity<Order> status = coffeeOrderService.orderCoffee(customerName, coffeeName, quantity);
-        return status;
+            @Valid @RequestParam("quantity") int quantity,
+            @RequestBody CardDetails cardDetails) throws FraudAlertException {
+        return coffeeOrderService.orderCoffee(customerName, coffeeName, quantity, cardDetails);
     }
 
     @GetMapping("/order/invoice/{invoiceNumber}")

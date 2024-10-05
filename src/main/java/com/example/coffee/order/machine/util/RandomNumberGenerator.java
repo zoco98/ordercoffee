@@ -3,8 +3,10 @@ package com.example.coffee.order.machine.util;
 import org.springframework.stereotype.Component;
 
 import java.security.SecureRandom;
+import java.util.UUID;
+
 @Component
-public class InvoiceNumberGenerator {
+public class RandomNumberGenerator {
     private static final SecureRandom random = new SecureRandom();
 
     public static String generateInvoiceNumber(int length){
@@ -15,5 +17,8 @@ public class InvoiceNumberGenerator {
             sb.append(characterSet.charAt(index));
         }
         return sb.toString();
+    }
+    public static String generateErrorCode(){
+        return UUID.randomUUID().toString();
     }
 }

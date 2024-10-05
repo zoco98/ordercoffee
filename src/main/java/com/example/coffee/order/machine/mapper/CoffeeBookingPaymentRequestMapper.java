@@ -8,11 +8,8 @@ import java.time.LocalDate;
 
 public class CoffeeBookingPaymentRequestMapper {
 
-    public static CoffeeBookingPaymentRequest mapCoffeeBookingPaymentRequest(Order order){
+    public static CoffeeBookingPaymentRequest mapCoffeeBookingPaymentRequest(Order order, CardDetails cardDetails){
 
-        final CardDetails cardDetails = CardDetails.builder()
-                .number("111187945126")
-                .expiry(LocalDate.ofYearDay(2029,30)).build();
         CoffeeBookingPaymentRequest coffeetBookingPaymentRequest = CoffeeBookingPaymentRequest.builder()
                 .bookingId(order.getOrderId())
                 .amount(Double.valueOf(order.getQuantity()*100))

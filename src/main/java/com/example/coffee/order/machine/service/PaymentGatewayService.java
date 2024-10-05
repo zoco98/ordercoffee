@@ -15,19 +15,22 @@ public class PaymentGatewayService {
 
     public CoffeeBookingResponse makePaymentAndBookYourCoffee(CoffeeBookingPaymentRequest coffeetBookingPaymentRequest) {
         final CardDetails cardDetails = coffeetBookingPaymentRequest.getCardDetails();
-
-        if (coffeetBookingPaymentRequest.isFraudAlert()) {
-            final FraudCheckResponse fraudCheckResponse = paymentProcessorGateway.fraudCheck(cardDetails.getNumber());
+        final FraudCheckResponse fraudCheckResponse = paymentProcessorGateway.fraudCheck(cardDetails.getNumber());
             if (fraudCheckResponse.isBlacklisted()) {
+                coffeetBookingPaymentRequest.setFraudAlert(true);
                 return new CoffeeBookingResponse(coffeetBookingPaymentRequest.getBookingId(), null, CoffeeBookingResponse.BookingResponseStatus.REJECTED);
             }
-        }
         final PaymentProcessorResponse paymentProcessorResponse = paymentProcessorGateway.makePayment(cardDetails.getNumber(), cardDetails.getExpiry(), coffeetBookingPaymentRequest.getAmount());
 
         if (paymentProcessorResponse.getPaymentResponseStatus() == PaymentProcessorResponse.PaymentResponseStatus.SUCCESS) {
             return new CoffeeBookingResponse(coffeetBookingPaymentRequest.getBookingId(), paymentProcessorResponse.getPaymentId(), CoffeeBookingResponse.BookingResponseStatus.SUCCESS);
-        } else {
+        }else {
             return new CoffeeBookingResponse(coffeetBookingPaymentRequest.getBookingId(), paymentProcessorResponse.getPaymentId(), CoffeeBookingResponse.BookingResponseStatus.REJECTED);
         }
+    }
+
+    public CoffeeBookingResponse batchPaymentByBookingId(String bookingId, String paymentId){
+        paymentProcessorGateway.updatePayment(bookingId);
+        return new CoffeeBookingResponse(bookingId, paymentId, CoffeeBookingResponse.BookingResponseStatus.SUCCESS);
     }
 }
